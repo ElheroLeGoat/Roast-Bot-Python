@@ -1,0 +1,4 @@
+*venv
+*.heartbeat
+config.ini
+__pycache__
