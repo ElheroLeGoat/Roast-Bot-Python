@@ -35,6 +35,7 @@ class Urban(commands.Cog):
         return await ctx.respond("Is Urban Dictionary down? - Unable to search at this moment.", ephemeral=True)
     
     @UrbanSlashGroup.command(name="censor", description="Enable / disable Urban dictionary for the current guild.")
+    @commands.has_permissions(send_messages=True)
     async def censorUrban(self, ctx:discord.ApplicationContext,
                         enable: Option(bool, "Is enabled by default")):
         guild = await database.getGuild(ctx.guild.id)
