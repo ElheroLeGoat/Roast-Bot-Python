@@ -1,5 +1,6 @@
 from datetime import datetime
-from src.resources.globals import __CONFIG__ as config
+
+from ..resources.globals import __CONFIG__ as config 
 import os
 import pathlib
 
