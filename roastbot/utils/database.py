@@ -11,10 +11,10 @@ class Guild(object):
     The Guild is simply an object for GetGuild
     it does not have any logic.
     """
-    id: int
-    censor: list
-    urban: bool
-    meme: bool
+    id: int = None
+    censor: list = []
+    urban: bool = None
+    meme: bool = None
     
     
     def __init__(self, **attributes):

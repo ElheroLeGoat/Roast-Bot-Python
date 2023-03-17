@@ -133,5 +133,5 @@ class RoastLogic():
 
         # We want to find the other allowed groups
         for group in agc:
-            lookup_table.update(self.roasts[group])
+            lookup_table.update(self.roasts[int(group)])
         return lookup_table
