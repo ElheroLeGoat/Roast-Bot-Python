@@ -4,7 +4,7 @@ from .resources import globals
 
 config = globals.__CONFIG__
 
-class RoastClient(discord.Bot):
+class RoastClient(discord.AutoShardedBot):
     ready = False
 
     async def on_ready(self):
@@ -16,7 +16,7 @@ class RoastClient(discord.Bot):
     async def on_connect(self):
         if bool(config["RUNTIME"]["DEBUG"]):
             await self.register_commands()
-    
+
     @staticmethod
     def load_cogs():
         for cog in os.listdir(globals.__PATHS__["COGS"]):
