@@ -10,6 +10,7 @@ __PATHS__ = {
     "COGS": Path.joinpath(__ROOTPATH__, "cogs"),
     "UTILS": Path.joinpath(__ROOTPATH__, "utils")
 }
+__SEP__ = os.path.sep
 
 # Setting the config globally so it's easy to change one place.
 __CONFIG__ = configparser.ConfigParser()

@@ -1,0 +1,558 @@
+{
+    "censor_groups": [
+      "No Censor (fairly clean.)",
+      "Sexual content (Anything with refrence to sex)",
+      "Violent content (violence, self-harm, suicide etc.)",
+      "Drug use (Anything that contains drug use)"
+    ],
+    "roasts": [
+      {
+        "censor": 0,
+        "roast": "I'd offer you some gum but your smiles got plenty of it."
+      },
+      {
+        "censor": 1,
+        "roast": "Repeat after me: semen is not hair gel."
+      },
+      {
+        "censor": 0,
+        "roast": "Your body fat is about as evenly distributed as wealth in the US economy."
+      },
+      {
+        "censor": 2,
+        "roast": "You're like dobby from harry potter, only people won't be sad when you die in the seventh book."
+      },
+      {
+        "censor": 1,
+        "roast": "If I asked you about your cock it wouldn't be a very long conversation."
+      },
+      {
+        "censor": 0,
+        "roast": "You have the kinds of looks that make people talk about your personality."
+      },
+      {
+        "censor": 0,
+        "roast": "You look like the result of pressing random on the character creation menu."
+      },
+      {
+        "censor": 3,
+        "roast": "You look like the after picture of a meth ad."
+      },
+      {
+        "censor": 0,
+        "roast": "Even the shower doesn't want to see you naked."
+      },
+      {
+        "censor": 0,
+        "roast": "I bet you wear a nose ring because no one wants to put one on your finger."
+      },
+      {
+        "censor": 0,
+        "roast": "When the airforce needs extra landing space they should just rent out your forehead."
+      },
+      {
+        "censor": 0,
+        "roast": "If laughter is the best medicine, your face must be curing the world."
+      },
+      {
+        "censor": 1,
+        "roast": "The only way you will ever get laid is if you crawl up a chicken's ass and wait."
+      },
+      {
+        "censor": 2,
+        "roast": "It looks like your face caught fire and someone tried to put it out with a hammer."
+      },
+      {
+        "censor": 0,
+        "roast": "Your family tree must be a cactus because everyone on it is a prick."
+      },
+      {
+        "censor": 0,
+        "roast": "Save your breath - you're going to need it to blow up your date."
+      },
+      {
+        "censor": 0,
+        "roast": "You're proof evolution can go in reverse."
+      },
+      {
+        "censor": 0,
+        "roast": "When you were born, the doctor came out to the waiting room and said to your dad, \"I'm very sorry. We did everything we could. But he pulled through.\""
+      },
+      {
+        "censor": 1,
+        "roast": "You've got less meat in your pants than there is in a vegetarian restaurant."
+      },
+      {
+        "censor": 0,
+        "roast": "I wasn't born with enough middle fingers to let you know how I feel about you."
+      },
+      {
+        "censor": 0,
+        "roast": "Your birth certificate is an apology letter from the condom factory."
+      },
+      {
+        "censor": 1,
+        "roast": "You're about as useful as a vibrator with no batteries."
+      },
+      {
+        "censor": 0,
+        "roast": "Fake hair, fake nails, fake smile. Are you sure you weren't made in China?"
+      },
+      {
+        "censor": 0,
+        "roast": "Mirrors can't talk, and lucky for you they can't laugh either."
+      },
+      {
+        "censor": 0,
+        "roast": "I'd say you're funny, but looks aren't everything."
+      },
+      {
+        "censor": 0,
+        "roast": "You must have been born on a highway because thats where most accidents happen."
+      },
+      {
+        "censor": 0,
+        "roast": "When I see your face theres not a thing I would change... Except for the direction im walking in."
+      },
+      {
+        "censor": 0,
+        "roast": "You're so ugly when you popped out the doctor said, \"Aww what a treasure\", and your mom said, \"yeah lets bury it.\""
+      },
+      {
+        "censor": 2,
+        "roast": "I hear when you were a child your mother wanted to hire somebody to take care of you, but the mafia wanted too much."
+      },
+      {
+        "censor": 0,
+        "roast": "You're so fat the only letters of the alphabet you know are KFC."
+      },
+      {
+        "censor": 1,
+        "roast": "The only positive thing about you is your HIV status."
+      },
+      {
+        "censor": 1,
+        "roast": "You're like STDs, nobody wants you, everyone hates you and it proves your parents should have used protection."
+      },
+      {
+        "censor": 2,
+        "roast": "The only way I'd lay naked with you would be in a mass grave."
+      },
+      {
+        "censor": 1,
+        "roast": "You're the cum your mother should have swallowed."
+      },
+      {
+        "censor": 1,
+        "roast": "I heard your mom got fired from her job at the sperm bank - the boss caught her drinking on the job."
+      },
+      {
+        "censor": 0,
+        "roast": "You should wear a condom on your head because if you're gonna act like a dick you might as well dress like one!"
+      },
+      {
+        "censor": 2,
+        "roast": "Twinkle twinkle little star, I want to hit you with my car, Throw you off a cliff so high, I hope you break your neck and die."
+      },
+      {
+        "censor": 2,
+        "roast": "Some babies were dropped on their heads but you were clearly thrown at a wall."
+      },
+      {
+        "censor": 0,
+        "roast": "Roses are red, shit is brown, shut the fuck up, and sit the fuck down."
+      },
+      {
+        "censor": 0,
+        "roast": "I see you were so impressed with your first chin that you added two more."
+      },
+      {
+        "censor": 1,
+        "roast": "Twinkle twinkle little whore, close your legs, they're not a door."
+      },
+      {
+        "censor": 1,
+        "roast": "I guess those penis enlargement pills are working - you're twice the dick you were yesterday!"
+      },
+      {
+        "censor": 1,
+        "roast": "Twinkle Twinkle little slut, name a guy you haven't fucked, was he skinny, was he tall, Nevermind you did them all."
+      },
+      {
+        "censor": 0,
+        "roast": "I failed a spelling test because they asked me how to spell 'bitch' and I wrote down your name."
+      },
+      {
+        "censor": 1,
+        "roast": "You're like a light switch, even a little kid can turn you on."
+      },
+      {
+        "censor": 1,
+        "roast": "I don't see any dicks in the general vicinity... So I'm wondering why you keep opening your fucking mouth."
+      },
+      {
+        "censor": 0,
+        "roast": "Who lit the fuse on your tampon?"
+      },
+      {
+        "censor": 1,
+        "roast": "Twinkle twinkle little slut, You like dick inside your butt."
+      },
+      {
+        "censor": 0,
+        "roast": "The last time I saw a face like yours I fed it a banana."
+      },
+      {
+        "censor": 0,
+        "roast": "Roses are red, violets are blue. I have five fingers and the middle one is for you."
+      },
+      {
+        "censor": 2,
+        "roast": "I'd like to kick you in the teeth but why improve your looks?"
+      },
+      {
+        "censor": 0,
+        "roast": "At least there's one good thing about your body. It isn't as ugly as your face."
+      },
+      {
+        "censor": 0,
+        "roast": "You're the reason the gene pool needs a lifeguard."
+      },
+      {
+        "censor": 0,
+        "roast": "You're not yourself today, I noticed the improvement immediately."
+      },
+      {
+        "censor": 0,
+        "roast": "You're the reason your dad drinks."
+      },
+      {
+        "censor": 0,
+        "roast": "Is your butt jealous of the amount of shit that just came out of your mouth?"
+      },
+      {
+        "censor": 2,
+        "roast": "You'd be suicidal if you felt as bad as you look."
+      },
+      {
+        "censor": 0,
+        "roast": "Your lips keep moving but I don't speak stupid."
+      },
+      {
+        "censor": 0,
+        "roast": "Calling you an idiot would be an insult to all stupid people."
+      },
+      {
+        "censor": 0,
+        "roast": "Brains aren't everything, in fact in your case they're nothing."
+      },
+      {
+        "censor": 0,
+        "roast": "I know you're not as stupid as you look, Nobody could be!"
+      },
+      {
+        "censor": 0,
+        "roast": "You're kind of like Rapunzel except instead of letting down your hair, you let down everyone in your life."
+      },
+      {
+        "censor": 1,
+        "roast": "You have more dick in your personality than you do in your pants."
+      },
+      {
+        "censor": 2,
+        "roast": "I'm sorry your dad beat you instead of cancer."
+      },
+      {
+        "censor": 0,
+        "roast": "You're so fat you need cheat codes to play Wii Fit."
+      },
+      {
+        "censor": 0,
+        "roast": "The only thing that goes erect when I'm near you is my middle finger."
+      },
+      {
+        "censor": 0,
+        "roast": "Stop bullying fat people, they have enough on their plate."
+      },
+      {
+        "censor": 2,
+        "roast": "If I were your mirror I would commit suicide."
+      },
+      {
+        "censor": 1,
+        "roast": "Being a dick to everyone won't make yours any bigger."
+      },
+      {
+        "censor": 0,
+        "roast": "Your face could scare the shit out of a toilet."
+      },
+      {
+        "censor": 0,
+        "roast": "They say people get what they deserve. In your case it's a participation trophy."
+      },
+      {
+        "censor": 1,
+        "roast": "Anyone willing to fuck you is just too lazy to masturbate."
+      },
+      {
+        "censor": 0,
+        "roast": "You're so stupid I don't have the time or the crayons to explain this to you."
+      },
+      {
+        "censor": 0,
+        "roast": "Your face looks like something I would draw with my non dominant hand."
+      },
+      {
+        "censor": 0,
+        "roast": "If my dog had your face I would shave his ass and teach him to walk backwards."
+      },
+      {
+        "censor": 0,
+        "roast": "If your IQ was multipled by anything it would still be 0."
+      },
+      {
+        "censor": 2,
+        "roast": "At least Hitler killed himself."
+      },
+      {
+        "censor": 0,
+        "roast": "I'd agree with you but then we'd both be wrong."
+      },
+      {
+        "censor": 2,
+        "roast": "When you were born your mom threw you out the window and the window threw you back."
+      },
+      {
+        "censor": 0,
+        "roast": "You're about as useful as Anne Frank's drum set."
+      },
+      {
+        "censor": 2,
+        "roast": "If I wanted to kill myself I'd climb your ego and jump to your IQ."
+      },
+      {
+        "censor": 2,
+        "roast": "I would burn you but burning trash is bad for the environment."
+      },
+      {
+        "censor": 0,
+        "roast": "I haven't seen you run that fast since Twinkies went on sale!"
+      },
+      {
+        "censor": 0,
+        "roast": "You were so ugly that when you were born the doctor put tinted windows on your incubator."
+      },
+      {
+        "censor": 1,
+        "roast": "Everything that comes out of your mouth is a lie, everything that goes in is a cock."
+      },
+      {
+        "censor": 1,
+        "roast": "I heard you received a brain transplant but it rejected your body."
+      },
+      {
+        "censor": 1,
+        "roast": "The only reason your partner likes your dick is because they were taught to enjoy the little things in life."
+      },
+      {
+        "censor": 2,
+        "roast": "Someone once said you're as pretty as a picture... I agree I would love to hang you."
+      },
+      {
+        "censor": 0,
+        "roast": "You're like Mondays, everyone hates you."
+      },
+      {
+        "censor": 0,
+        "roast": "The 80's called, they want their haircut back."
+      },
+      {
+        "censor": 0,
+        "roast": "You must've been born at a pound because you're a son of a bitch."
+      },
+      {
+        "censor": 0,
+        "roast": "It's better to let someone think you are an idiot then to open your mouth and prove it."
+      },
+      {
+        "censor": 0,
+        "roast": "I guess you prove that even god makes mistakes sometimes."
+      },
+      {
+        "censor": 0,
+        "roast": "I'm jealous of people that don't know you!"
+      },
+      {
+        "censor": 0,
+        "roast": "You're so dumb that you got hit by a parked car."
+      },
+      {
+        "censor": 0,
+        "roast": "I bet your brain feels as good as new, seeing that you never use it."
+      },
+      {
+        "censor": 0,
+        "roast": "What's the difference between you and eggs? Eggs get laid and you don't."
+      },
+      {
+        "censor": 0,
+        "roast": "If you're gonna be a smartass, first you have to be smart. Otherwise you're just an ass."
+      },
+      {
+        "censor": 0,
+        "roast": "At least when I do a handstand my stomach doesn't hit me in the face."
+      },
+      {
+        "censor": 0,
+        "roast": "I don't exactly hate you, but if you were on fire and I had water, I'd drink it."
+      },
+      {
+        "censor": 0,
+        "roast": "God made you as an example of what not to do."
+      },
+      {
+        "censor": 0,
+        "roast": "You're proof that God has a sense of humor."
+      },
+      {
+        "censor": 0,
+        "roast": "You're so fat you could sell shade."
+      },
+      {
+        "censor": 0,
+        "roast": "You'll never be the man your mother is."
+      },
+      {
+        "censor": 1,
+        "roast": "Which sexual position produces the ugliest children? Ask your mother."
+      },
+      {
+        "censor": 0,
+        "roast": "I thought of you today. It reminded me to take the garbage out."
+      },
+      {
+        "censor": 0,
+        "roast": "You're so ugly when you look in the mirror, your reflection looks away."
+      },
+      {
+        "censor": 1,
+        "roast": "Gay? I'm straighter than the pole your mom dances on."
+      },
+      {
+        "censor": 0,
+        "roast": "I just stepped in something that was smarter than you and smelled better too."
+      },
+      {
+        "censor": 0,
+        "roast": "I can't help imagining how much awesomer the world would be if your dad had just pulled out."
+      },
+      {
+        "censor": 0,
+        "roast": "Good story, but in what chapter do you shut the fuck up?"
+      },
+      {
+        "censor": 0,
+        "roast": "I was pro life. Then I met you."
+      },
+      {
+        "censor": 0,
+        "roast": "I'd tell you to go fuck yourself, but that would be cruel and unusual punishment."
+      },
+      {
+        "censor": 0,
+        "roast": "You stare at frozen juice cans because they say, \"concentrate\"."
+      },
+      {
+        "censor": 0,
+        "roast": "You have the perfect face for radio."
+      },
+      {
+        "censor": 0,
+        "roast": "You're so ugly you make blind kids cry."
+      },
+      {
+        "censor": 0,
+        "roast": "Nice shirt, what brand is it? Clearance?"
+      },
+      {
+        "censor": 0,
+        "roast": "Don't you need a license to be that ugly?"
+      },
+      {
+        "censor": 0,
+        "roast": "One more wrinkle and you'd pass for a prune."
+      },
+      {
+        "censor": 0,
+        "roast": "You're so dumb, your dog teaches you tricks."
+      },
+      {
+        "censor": 0,
+        "roast": "You're the reason they invented double doors!"
+      },
+      {
+        "censor": 0,
+        "roast": "Hold on, I'll go find you a tampon."
+      },
+      {
+        "censor": 0,
+        "roast": "You prefer three left turns to one right turn."
+      },
+      {
+        "censor": 0,
+        "roast": "You conserve toilet paper by using both sides."
+      },
+      {
+        "censor": 0,
+        "roast": "What did you have for breakfast? Bitch Flakes?"
+      },
+      {
+        "censor": 0,
+        "roast": "You're so stupid you tried to wake a sleeping bag."
+      },
+      {
+        "censor": 0,
+        "roast": "You're so stupid, you'd trip over a cordless phone."
+      },
+      {
+        "censor": 0,
+        "roast": "I called your boyfriend gay and he hit me with his purse!"
+      },
+      {
+        "censor": 0,
+        "roast": "You're so stupid, it takes you an hour to cook minute rice."
+      },
+      {
+        "censor": 0,
+        "roast": "Don't feel sad, don't feel blue, Frankenstein was ugly too."
+      },
+      {
+        "censor": 0,
+        "roast": "If I wanted a bitch I'd have bought a dog."
+      },
+      {
+        "censor": 0,
+        "roast": "You shouldn't play hide and seek, no one would look for you."
+      },
+      {
+        "censor": 0,
+        "roast": "You're so ugly, when you threw a boomerang it didn't come back."
+      },
+      {
+        "censor": 0,
+        "roast": "The clothes you wear are so ugly even a scarecrow wouldn't wear them."
+      },
+      {
+        "censor": 0,
+        "roast": "You're so ugly, when you got robbed, the robbers made you wear their masks."
+      },
+      {
+        "censor": 0,
+        "roast": "You're not completely useless, you can always serve as a bad example."
+      },
+      {
+        "censor": 1,
+        "roast": "Your dick is so short, if I cut it in half, I would lose the piece that came off."
+      }
+    ]
+  }
