@@ -20,7 +20,7 @@
 
 ## Running the bot
 you can execute: `run.py` to easily run the bot.
-if you don't want to use `run.py` you can always run the `src/roastbot.py` directly, however doing this prevents the config `RUNTIME.HEADLESS` from working properly, on windows you can read up on `pythonw` and on linux `nohub` to get around this.
+if you don't want to use `run.py` you can always run the `python -m roastbot` directly, however doing this prevents the config `RUNTIME.HEADLESS` from working properly, on windows you can read up on `pythonw` and on linux `nohub` to get around this.
 
 ## FaQ:
 ### Q) Why does the bot die when i closes the terminal window?

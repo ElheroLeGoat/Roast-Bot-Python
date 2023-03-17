@@ -1,29 +1,41 @@
 import random
-import discord
-from discord.ext import commands
-from src.resources import globals
 import json
+from ...resources import globals
 
 # class Roast(commands.Cog):
-class Roast():
+class RoastLogic():
 
-    # Dictionary structure
-    # censor_group
-    #   roast_id
-    #       roast_number
+    """The Roast Dictionary
+    The dictionary structure is as following:
+    {
+        "censor_group_id"
+        {
+            "roast_id": "roast Goes here" 
+        }
+    }
+    """
     roasts: dict = {}
+    
+    """The Censor Group list. they can be found in roasts.json
+    """
     censor_groups: list = []
+
+    """The total amount of roasts loaded to determine if the roast a person is specifying exists or is just not present in the allowed groups
+    """
     total_roasts: int = 0
 
-    def __init__(self, bot):
-        self.bot = bot
-        self.load_roasts()
+    def __init__(self):
+        self.LoadRoasts()
     
 
-    def reload_roasts(self):
-        return self.load_roasts()
+    def ReloadRoasts(self) -> None:
+        """Alias for LoadRoasts
+        """
+        return self.LoadRoasts()
 
-    def load_roasts(self):
+    def LoadRoasts(self) -> None:
+        """Loads the roasts into memory
+        """
         self.roasts = {}
         with open(f'{globals.__PATHS__["RESOURCES"]}{globals.__SEP__}roasts.json') as obj:
             data = json.loads(obj.read())
@@ -50,16 +62,23 @@ class Roast():
                     pass
             self.total_roasts = i - 1
 
-    def SearchRoast(self, search_param: str, allowed_groups: list = []):
-        lookup_table = self._getLookupTable(allowed_groups)
+    def SearchRoast(self, search_param: str, acg: list = []) -> dict:
+        """Searches the roast list in the allowed groups.
+
+        Args:
+            search_param (str): The search string to look for (Case Insensitive)
+            agc (list, optional): The groups allowed, these can be seen in resources/roasts.json and starts at 0. Defaults to [].
+
+        Returns:
+            dict[succes, message]: Returns the possible success.
+        """
+        lookup_table = self._getLookupTable(acg)
 
         # Fucking magical searching
         def mapFunc(index):
             if search_param.lower() in lookup_table[index].lower():
                 return f'{index}: {lookup_table[index]}'
         result = "\n".join(list(filter(lambda item: item is not None, list(map(mapFunc, lookup_table)))))
-
-
         message = f'**Found:**```{result}```'
 
         if not result:
@@ -70,9 +89,18 @@ class Roast():
         return {"success": True, "message": message}
 
 
-    def GetRoast(self, allowed_groups: list = [], roast_id: int = None) -> str:
+    def GetRoast(self, agc: list = [], roast_id: int = None) -> dict:
+        """Retrieve a roast, either random or by the roast_id
+
+        Args:
+            agc (list, optional): The groups allowed, these can be seen in resources/roasts.json and starts at 0. Defaults to [].
+            roast_id (int, optional): The roast ID if one is looking for a specific roast. Defaults to None.
+
+        Returns:
+            dict[succes, message]: Returns the possible success.
+        """
         retval = {"success": True}
-        lookup_table = self._getLookupTable(allowed_groups)
+        lookup_table = self._getLookupTable(agc)
 
         # If there's not roast ID we want to retrieve a random roast from the lookup table.
         index = roast_id
@@ -91,11 +119,19 @@ class Roast():
         return retval
     
 
-    def _getLookupTable(self, allowed_groups: list = []):
+    def _getLookupTable(self, agc: list = []) -> dict:
+        """Private Method to retrieve the Lookup Table.
+
+        Args:
+            agc (list, optional): The groups allowed, these can be seen in resources/roasts.json and starts at 0. Defaults to [].
+
+        Returns:
+            dict: All the roasts in their dictionaries.
+        """
         # Group 0 (no censor) is always allowed.
         lookup_table = self.roasts[0]
 
         # We want to find the other allowed groups
-        for group in allowed_groups:
+        for group in agc:
             lookup_table.update(self.roasts[group])
         return lookup_table

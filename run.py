@@ -1,8 +1,9 @@
 import sys
 import subprocess
 import pathlib
-from src.utils.types import ConvertBool, wrap
-from src.resources.globals import __CONFIG__, __PATHS__
+from roastbot.utils.types import ConvertBool, wrap
+from roastbot.resources.globals import __PATHS__, __CONFIG__
+
 banner = """
 ______ _____  ___   _____ _____  ______  _____ _____  \r
 | ___ \  _  |/ _ \ /  ___|_   _| | ___ \|  _  |_   _| \r
@@ -28,7 +29,7 @@ activate = pathlib.Path.joinpath(venv_path, "Scripts", "activate")
 if not ConvertBool(__CONFIG__["RUNTIME"]["HEADLESS"]):
     print(wrap(f'The python bot is **NOT** running in headless therefore you cant close this window'))
     print(f'Activating virtual env and starting the bot.')
-    with subprocess.Popen(f'{activate} && python sandbox.py', shell=True) as proc:
+    with subprocess.Popen(f'{activate} && python -m roastbot', shell=True) as proc:
         pass
 else:
     print(wrap(f'the python bot will be running in headless mode.'))
@@ -38,6 +39,6 @@ else:
         print("The runtime and setup script does not support linux yet.")
         exit(1)
     elif sys.platform == "win32":
-        f = subprocess.Popen(f'{activate} && python sandbox.py', shell=True)
+        f = subprocess.Popen(f'{activate} && python -m roastbot', shell=True)
 
     print("you may now close the window")

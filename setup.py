@@ -3,6 +3,7 @@
 import sys
 import subprocess
 import configparser
+import sqlite3
 import pathlib
 from src.utils.types import wrap
 
@@ -79,3 +80,8 @@ except Exception as e:
     print(wrap("[ERROR] Unable to install required packages"))
     print(e)
     exit(1)
+
+print("Creating database in src/resources")
+connection = sqlite3.connect(pathlib.Path.joinpath(__ROOT__, "src", "resources", "storage.db"))
+c = connection.cursor()
+c.execute("CREATE TABLE guilds(id, censor, urban, meme)")
