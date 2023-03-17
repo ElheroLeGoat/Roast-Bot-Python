@@ -5,7 +5,7 @@ import subprocess
 import configparser
 import sqlite3
 import pathlib
-from src.utils.types import wrap
+from roastbot.utils.types import wrap
 
 if sys.version_info.major < 3 or (sys.version_info.major == 3 and sys.version_info.minor < 11):
     print(f'Roastbot requires python version >3.11 in order to run, current version: {sys.version}')
@@ -32,9 +32,9 @@ print(f'Setting Global Variables \n')
 __ROOT__ = pathlib.Path(__file__).parent
 __CONFIG__ = configparser.ConfigParser()
 __CONFIG__.sections()
-__CONFIG__.read(pathlib.Path.joinpath(__ROOT__, "src", "resources", "config.ini.dist"))
+__CONFIG__.read(pathlib.Path.joinpath(__ROOT__, "roastbot", "resources", "config.ini.dist"))
 
-print(f'Renaming: src/resources/config.ini.dist to config.ini \n')
+print(f'Renaming: roastbot/resources/config.ini.dist to config.ini \n')
 try:
     path = pathlib.Path.joinpath(__ROOT__, "src", "resources")
     file = pathlib.Path.joinpath(path, "config.ini.dist")
@@ -81,7 +81,7 @@ except Exception as e:
     print(e)
     exit(1)
 
-print("Creating database in src/resources")
-connection = sqlite3.connect(pathlib.Path.joinpath(__ROOT__, "src", "resources", "storage.db"))
+print("Creating database in roastbot/resources")
+connection = sqlite3.connect(pathlib.Path.joinpath(__ROOT__, "roastbot", "resources", "storage.db"))
 c = connection.cursor()
 c.execute("CREATE TABLE guilds(id, censor, urban, meme)")

@@ -2,4 +2,4 @@
 *.heartbeat
 config.ini
 __pycache__
-.db
+*.db
