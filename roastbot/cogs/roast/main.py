@@ -20,10 +20,10 @@ class Roast(commands.Cog):
     RoastSlashGroup = SlashCommandGroup("roasts", "Commands related to the Roasts.")
 
     @RoastSlashGroup.command(name='roast', description="Roast someone!")
+    @commands.has_permissions(send_messages=True)
     async def Roast(self, ctx: discord.ApplicationContext, 
                     user:     Option(discord.Member, "What user do you want to roast?", required=False),
                     roast_id: Option(int, "don't set this if you want a random roast.", required=False)):
-        
         guild = await database.getGuild(ctx.guild.id)
         acg = []
         if guild:
@@ -36,8 +36,8 @@ class Roast(commands.Cog):
         else:
             await ctx.respond(roast["message"], ephemeral=True)
 
-
     @RoastSlashGroup.command(name="search", description="search for words or sentences in our roast library")
+    @commands.has_permissions(send_messages=True)
     async def SearchRoast(self, ctx: discord.ApplicationContext,
                         search: Option(str, "What do you want to search for?", required=True)):
         await ctx.defer()
@@ -49,18 +49,26 @@ class Roast(commands.Cog):
         roast = self.roasts.SearchRoast(search, agc)
         await ctx.respond(roast["message"])
 
-    async def _get_censor_list(self, ctx: discord.AutocompleteContext):
+    async def _get_censor_list(self, ctx: discord.AutocompleteContext) -> list:
+        """Private AutoComplete to retrieve the censor list.
+
+        Args:
+            ctx (discord.AutocompleteContext): the applicationcontext
+
+        Returns:
+            list: the list of groups
+        """
         return self.roasts.censor_groups
 
     @RoastSlashGroup.command(name="censor", description="Allow / disallow censor groups")
+    @commands.has_guild_permissions(ban_members=True)
     async def CensorGuild(self, ctx:discord.ApplicationContext,
                         group: Option(str, "The group to allow / disallow", autocomplete=_get_censor_list),
                         allow: Option(bool, "A simple yes /no question. should they be allowed?")):
         await ctx.defer(ephemeral=True)
         if group not in self.roasts.censor_groups:
             return await ctx.respond("Bruw, please select one of the options from the dropdown instead of writing it yourself.")
-        
-        
+
         guild = await database.getGuild(ctx.interaction.guild.id)
         index = self.roasts.censor_groups.index(group)
         try:
