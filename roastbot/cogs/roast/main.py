@@ -3,7 +3,7 @@
 # Discord Imports
 import discord
 from discord.ext import commands
-from discord.commands import SlashCommandGroup, permissions, Option
+from discord.commands import SlashCommandGroup, Option
 
 # Project Imports
 from ...resources import globals
