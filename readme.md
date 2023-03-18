@@ -1,12 +1,12 @@
 
 <p align="center">
-   <img src="https://user-images.githubusercontent.com/36930869/44614153-d8fe7a80-a7dc-11e8-98f3-c3e83a29b266.PNG" alt="roast bot logo" style="display:block">
+   <img src="https://user-images.githubusercontent.com/36930869/44614153-d8fe7a80-a7dc-11e8-98f3-c3e83a29b266.PNG" alt="roast bot logo"><br>
    <a href="https://discordbots.org/bot/461361233644355595"><img src="https://discordbots.org/api/widget/461361233644355595.svg" alt="discordbots.org widget" /></a>
 </p>
-<span style="display:flex; flex-flow:row nowrap; justify-content:space-around">
-   <a href="https://www.python.org/"><img src="https://img.shields.io/badge/Python->%3D%203.11-blue?style=for-the-badge&logo=python" /></a>
-   <a href="https://github.com/ElheroLeGoat/Roast-Bot-Python/blob/master/LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue?style=for-the-badge&logo=conventionalcommits" /></a>
-</span>
+<p align="center">
+   <a href="https://www.python.org/"><img src="https://img.shields.io/badge/Python->%3D%203.11-blue?style=for-the-badge&logo=python" alt="python version 3.11 or newer required"/></a>
+   <a href="https://github.com/ElheroLeGoat/Roast-Bot-Python/blob/master/LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue?style=for-the-badge&logo=conventionalcommits" alt="Licensed under MIT"/></a>
+</p>
 
 # Roast Bot - The Python rewrite
 **125** Roasts, More than *300* memes, Roast-Bot has everything you need to give your friends a warm welcome!
