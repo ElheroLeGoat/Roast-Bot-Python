@@ -17,11 +17,20 @@ class Urban(commands.Cog):
     @commands.has_permissions(send_messages=True)
     async def Search(self, ctx: discord.ApplicationContext,
                     word: Option(str, "The word to lookup")):
+        """A command to Search the Urban Dictionary
+
+        Args:
+            ctx (discord.ApplicationContext): The ApplicationContext
+            word (string): The word to search for.
+        
+        Return:
+            None
+        """
         await ctx.defer()
         guild = await database.getGuild(ctx.guild.id)
         if guild and not guild.urban:
             return await ctx.respond(f'Sorry, but `{ctx.guild.name}` has disabled the Urban dictionary', ephemeral=True)
-        lookup = await self.api.LookupByWord(word.split(" ")[0])
+        lookup = await self.api.LookupByWord(word.strip())
         if lookup:
             embed = discord.Embed(
                 color=0xEB671D,
@@ -35,16 +44,36 @@ class Urban(commands.Cog):
         return await ctx.respond("Is Urban Dictionary down? - Unable to search at this moment.", ephemeral=True)
     
     @UrbanSlashGroup.command(name="censor", description="Enable / disable Urban dictionary for the current guild.")
-    @commands.has_permissions(send_messages=True)
-    async def censorUrban(self, ctx:discord.ApplicationContext,
+    @commands.has_permissions(ban_members=True)
+    async def CensorUrban(self, ctx:discord.ApplicationContext,
                         enable: Option(bool, "Is enabled by default")):
-        guild = await database.getGuild(ctx.guild.id)
+        """An Administrator Command used to Enable / Disable the Urban Dictionary in a guild.
 
+        Args:
+            ctx (discord.ApplicationContext): The ApplicationContext
+            enable (boolean): a True / False option
+        """
+        guild = await database.getGuild(ctx.guild.id)
         if guild:
             await database.createGuild(guild.id, guild.censor, enable, guild.meme)
         else:
             await database.createGuild(ctx.guild.id, urban=enable)
-        return await ctx.respond("Settings for the Urban Dictionary has been updated", ephemeral=True)
+        await ctx.respond("Settings for the Urban Dictionary has been updated", ephemeral=True)
+
+    @CensorUrban.error
+    @Search.error
+    async def censorError(self, ctx: discord.ApplicationContext, error: Exception):
+        """Error handling for UrbanDictionary
+
+        Args:
+            ctx (discord.ApplicationContext): The ApplicationContext parsed from the command.
+            error (Exception): The Error Exception
+        """
+        if isinstance(error, commands.errors.MissingPermissions):
+            await ctx.delete()
+        else:
+            # Log error.
+            pass
 
 def setup(bot):
     """

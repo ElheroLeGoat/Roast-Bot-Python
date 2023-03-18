@@ -24,6 +24,13 @@ class Roast(commands.Cog):
     async def Roast(self, ctx: discord.ApplicationContext, 
                     user:     Option(discord.Member, "What user do you want to roast?", required=False),
                     roast_id: Option(int, "don't set this if you want a random roast.", required=False)):
+        """A Command used to roast another user.
+
+        Args:
+            ctx (discord.ApplicationContext): The ApplicationContext
+            user (discord.Member): The user to roast.
+            roast_id (roast_id, optional): The roast_id if present.
+        """
         guild = await database.getGuild(ctx.guild.id)
         acg = []
         if guild:
@@ -40,6 +47,12 @@ class Roast(commands.Cog):
     @commands.has_permissions(send_messages=True)
     async def SearchRoast(self, ctx: discord.ApplicationContext,
                         search: Option(str, "What do you want to search for?", required=True)):
+        """A command used to search for keywords in the roast database.
+
+        Args:
+            ctx (discord.ApplicationContext): The ApplicationContext
+            search (str): The string to search for.
+        """
         await ctx.defer()
         guild = await database.getGuild(ctx.guild.id)
         agc = []
@@ -53,18 +66,30 @@ class Roast(commands.Cog):
         """Private AutoComplete to retrieve the censor list.
 
         Args:
-            ctx (discord.AutocompleteContext): the applicationcontext
+            ctx (discord.AutocompleteContext): The ApplicationContext
 
         Returns:
             list: the list of groups
         """
+        if not ctx.interaction.user.guild_permissions.ban_members:
+            return ["Missing Permissions"]
         return self.roasts.censor_groups
-
+    
     @RoastSlashGroup.command(name="censor", description="Allow / disallow censor groups")
     @commands.has_guild_permissions(ban_members=True)
     async def CensorGuild(self, ctx:discord.ApplicationContext,
                         group: Option(str, "The group to allow / disallow", autocomplete=_get_censor_list),
                         allow: Option(bool, "A simple yes /no question. should they be allowed?")):
+        """An Administrator command to censor specific groups in a guild
+
+        Args:
+            ctx (discord.ApplicationContext): The ApplicationContext
+            allow (bool): Wether or not to allow the specific group
+            group (str, optional): an autocompletecontext string. Defaults to _get_censor_list).
+
+        Returns:
+            _type_: _description_
+        """
         await ctx.defer(ephemeral=True)
         if group not in self.roasts.censor_groups:
             return await ctx.respond("Bruw, please select one of the options from the dropdown instead of writing it yourself.")
@@ -93,6 +118,22 @@ class Roast(commands.Cog):
             return await ctx.respond("Bruw you fucked up.")
 
         await ctx.respond("Update of guild censorship is done.")
+
+    @CensorGuild.error
+    @SearchRoast.error
+    @Roast.error
+    async def censorError(self, ctx: discord.ApplicationContext, error:Exception):
+        """Error handling for the Roast cog
+
+        Args:
+            ctx (discord.ApplicationContext): The ApplicationContext parsed from the command.
+            error (Exception): The Error Exception
+        """
+        if isinstance(error, commands.errors.MissingPermissions):
+            await ctx.delete()
+        else:
+            # Log error.
+            pass
 
 
 def setup(bot):
