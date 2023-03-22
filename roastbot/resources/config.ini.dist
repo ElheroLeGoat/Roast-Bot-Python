@@ -1,6 +1,8 @@
 [DISCORD]
 # The bots discord token.
-TOKEN       = ""
+TOKEN       = 
+OWNER       = 
+
 # Adding the ID's of a guild and channel will allow developer commands to be run.
 DEV_GUILD   = 0
 DEV_CHANNEL = 0
