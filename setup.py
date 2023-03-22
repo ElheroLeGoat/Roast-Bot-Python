@@ -36,7 +36,7 @@ __CONFIG__.read(pathlib.Path.joinpath(__ROOT__, "roastbot", "resources", "config
 
 print(f'Renaming: roastbot/resources/config.ini.dist to config.ini \n')
 try:
-    path = pathlib.Path.joinpath(__ROOT__, "src", "resources")
+    path = pathlib.Path.joinpath(__ROOT__, "roastbot", "resources")
     file = pathlib.Path.joinpath(path, "config.ini.dist")
     file.rename(pathlib.Path.joinpath(path, "config.ini"))
     print(f'Renaming successfull \n')
