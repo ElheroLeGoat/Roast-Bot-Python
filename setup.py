@@ -53,7 +53,7 @@ venv_path = pathlib.Path.joinpath(__ROOT__, __CONFIG__["SETUP"]["VENV.NAME"])
 print(f'Generating a new Virtual environment in: {venv_path} \n')
 try:
     if not pathlib.Path.exists(venv_path):
-        with subprocess.Popen(f'python -m venv {venv_path}', shell=True) as proc:
+        with subprocess.Popen(f'py -m venv {venv_path}', shell=True) as proc:
             pass
         print('Virtual Environment generated \n')
     else:
