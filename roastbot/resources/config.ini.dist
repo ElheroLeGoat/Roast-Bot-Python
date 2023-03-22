@@ -1,14 +1,13 @@
 [DISCORD]
 # The bots discord token.
-TOKEN       = 
-OWNER       = 
-
+TOKEN = 
+OWNER = 
 # Adding the ID's of a guild and channel will allow developer commands to be run.
 DEV_GUILD   = 0
 DEV_CHANNEL = 0
 
 [LOGGING]
-ENABLED = yes
+ENABLED = true
 # The formats below are defined based on the 
 #
 LOG.FORMAT = [%%(asctime)s] %%(levelname)s: %%(message)s
@@ -20,15 +19,16 @@ VENV.NAME = venv
 
 # The runtime will only be applied if the run.py file is executed.
 [RUNTIME]
-HEADLESS = yes
+HEADLESS = true
+DEBUG = true
 
 # the heartbeat is recommended if you're running a headless version of the script.
 [HEARTBEAT]
-ENABLED = yes
+ENABLED = true
 
 # format of the heartbeat. note unallowed characters will be stripped allowed characters are: a-Z ._
 # The file will always end on .heartbeat
-FORMAT  = %%y.%%d.%%m_%%H.%%M_%%PID
+FORMAT  = %%y.%%m.%%d_%%H.%%M_%%P
 
 # The path determines where to generate the heartbeat file.
 # by default it'll generate it in the project root.

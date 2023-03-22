@@ -39,6 +39,6 @@ else:
         print("The runtime and setup script does not support linux yet.")
         exit(1)
     elif sys.platform == "win32":
-        f = subprocess.Popen(f'{activate} && python -m roastbot', shell=True)
+        f = subprocess.Popen(f'{activate} && pythonw -m roastbot', shell=True)
 
     print("you may now close the window")
