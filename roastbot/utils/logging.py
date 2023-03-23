@@ -7,7 +7,7 @@ from ..resources.globals import __CONFIG__ as config
 from .types import ConvertBool
 
 log_lib.getLogger("main")
-log_lib.basicConfig(filename="roast_log.log", level=log_lib.ERROR, datefmt=config["LOGGING"]["DATE.FORMAT"])
+log_lib.basicConfig(filename="roast_unordered_log.log", level=log_lib.ERROR, datefmt=config["LOGGING"]["DATE.FORMAT"])
 
 def filter(record: log_lib.LogRecord):
     path_list = record.pathname.split(os.path.sep)

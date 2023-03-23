@@ -31,19 +31,17 @@ class Roast(commands.Cog):
             user (discord.Member): The user to roast.
             roast_id (roast_id, optional): The roast_id if present.
         """
-        try:
-            guild = await database.getGuild(ctx.guild.id)
-            acg = []
-            if guild:
-                acg = guild.censor
-            roast = self.roasts.GetRoast(acg, roast_id)
-            if roast["success"]:
-                if user.id == self.bot.user.id:
-                    user = ctx.author
-                await ctx.respond(f'{user.mention}, {roast["message"]}')
-            else:
-                await ctx.respond(roast["message"], ephemeral=True)
-        except Exception as e:
+        guild = await database.getGuild(ctx.guild.id)
+        acg = []
+        if guild:
+            acg = guild.censor
+        roast = self.roasts.GetRoast(acg, roast_id)
+        if roast["success"]:
+            if user.id == self.bot.user.id:
+                user = ctx.author
+            await ctx.respond(f'{user.mention}, {roast["message"]}')
+        else:
+            await ctx.respond(roast["message"], ephemeral=True)
 
 
     @RoastSlashGroup.command(name="search", description="search for words or sentences in our roast library")
@@ -117,8 +115,8 @@ class Roast(commands.Cog):
                     await database.createGuild(ctx.interaction.guild.id, [index])
         except Exception as e:
             # Log error?
-            print(e.with_traceback())
-            return await ctx.respond("Bruw you fucked up.")
+            logging.error(f'Unable to censor guild: {ctx.guild.name} {e}')
+            return await ctx.respond("Bruw you fucked up")
 
         await ctx.respond("Update of guild censorship is done.")
 
@@ -136,7 +134,7 @@ class Roast(commands.Cog):
             await ctx.delete()
         else:
             # Log error.
-            logging.error(f'{ctx.author.name}#{ctx.author.discriminator} Tried to use {ctx.command.qualified_name} but it failed with error {error}')
+            logging.error(f'{ctx.author.name}#{ctx.author.discriminator} Tried to use {ctx.command.qualified_name} in {ctx.guild.name} but it failed with error {error}')
             pass
 
 
