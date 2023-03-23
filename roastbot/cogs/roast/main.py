@@ -7,7 +7,7 @@ from discord.commands import SlashCommandGroup, Option
 
 # Project Imports
 from ...resources import globals
-from ...utils import database
+from ...utils import database, logging
 from . import logic
 
 class Roast(commands.Cog):
@@ -31,17 +31,20 @@ class Roast(commands.Cog):
             user (discord.Member): The user to roast.
             roast_id (roast_id, optional): The roast_id if present.
         """
-        guild = await database.getGuild(ctx.guild.id)
-        acg = []
-        if guild:
-            acg = guild.censor
-        roast = self.roasts.GetRoast(acg, roast_id)
-        if roast["success"]:
-            if user.id == self.bot.user.id:
-                user = ctx.author
-            await ctx.respond(f'{user.mention}, {roast["message"]}')
-        else:
-            await ctx.respond(roast["message"], ephemeral=True)
+        try:
+            guild = await database.getGuild(ctx.guild.id)
+            acg = []
+            if guild:
+                acg = guild.censor
+            roast = self.roasts.GetRoast(acg, roast_id)
+            if roast["success"]:
+                if user.id == self.bot.user.id:
+                    user = ctx.author
+                await ctx.respond(f'{user.mention}, {roast["message"]}')
+            else:
+                await ctx.respond(roast["message"], ephemeral=True)
+        except Exception as e:
+
 
     @RoastSlashGroup.command(name="search", description="search for words or sentences in our roast library")
     @commands.has_permissions(send_messages=True)
@@ -133,6 +136,7 @@ class Roast(commands.Cog):
             await ctx.delete()
         else:
             # Log error.
+            logging.error(f'{ctx.author.name}#{ctx.author.discriminator} Tried to use {ctx.command.qualified_name} but it failed with error {error}')
             pass
 
 

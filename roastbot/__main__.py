@@ -1,11 +1,14 @@
 import os
 import discord
 from .resources import globals
+from .utils import logging
+
 
 config = globals.__CONFIG__
 
 class RoastClient(discord.AutoShardedBot):
     ready = False
+    FirstConnection = True
 
     async def on_ready(self):
         if self.ready:
@@ -14,8 +17,10 @@ class RoastClient(discord.AutoShardedBot):
         await bot.change_presence(status=discord.Status.online)
     
     async def on_connect(self):
-        if bool(config["RUNTIME"]["DEBUG"]):
+        if bool(config["RUNTIME"]["DEBUG"]) and self.FirstConnection:
+            logging.info(f'Connected to discord, the current server count is: {len(bot.guilds)}')
             await self.register_commands()
+            self.FirstConnection = False
 
     @staticmethod
     def load_cogs():

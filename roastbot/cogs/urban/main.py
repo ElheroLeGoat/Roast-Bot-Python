@@ -3,7 +3,7 @@ from discord import Embed
 from discord.ext import commands
 from discord.commands import SlashCommandGroup, Option
 from . import api
-from ...utils import database
+from ...utils import database, logging
 
 class Urban(commands.Cog):
     def __init__(self, bot):
@@ -73,6 +73,7 @@ class Urban(commands.Cog):
             await ctx.delete()
         else:
             # Log error.
+            logging.error(f'{ctx.author.name}#{ctx.author.discriminator} Tried to use {ctx.command.qualified_name} but it failed with error {error}')
             pass
 
 def setup(bot):
