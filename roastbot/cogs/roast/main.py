@@ -13,7 +13,7 @@ from . import logic
 class Roast(commands.Cog):
     
     def __init__(self, bot):
-        print("ROAST Cog Loaded")
+        logging.debug('Roast cog loaded successfully')
         self.bot = bot
         self.roasts = logic.RoastLogic()
 

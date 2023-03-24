@@ -1,82 +1,136 @@
+# Global Modules to import
 from datetime import datetime
+from typing   import Union
+from pathlib  import Path
+import os
 
+# Package specific modules.
 from ..resources.globals import __CONFIG__ as config
 from .types import Singleton
-from pathlib import Path
-import os
-import pathlib
+from . import logging
 
-print(__file__)
+class Heartbeat(metaclass=Singleton):
+    """The Heartbeat Class is used to generate and track specific heartbeat files. these files is used by a human to:
+        
+        Humans can use the specific .heartbeat files to:
+        a) Check if the bot is still running
+        b) Kill the bot (by deleting the heartbeat file)
+        
+        An Auto-reboot script can use the .heartbeat files to:
+        a) make sure the bot is still running
+            - If not Restart or alert the server owner.
+        b) Kill itself if the file is deleted.
 
+    Raises:
+        FileNotFoundError: The class will raise FileNotFound in some methods, check the method docstring to see what method raises this and when.
+        RuntimeError: If the class is instantiated using isMainScript = False, Following methods will raise this error: MakeFile, UpdateFile, CleanOldFiles
+    """
+    filePath: Path
+    absPath: Path
+    filename: str
+    isMainScript: bool
 
-class Hearbeat(metaclass=Singleton):
-    pattern = "ROAST.*.heartbeat"
+    def __init__(self, isMainScript: bool = True) -> None:
+        self.absPath = Path(config["HEARTBEAT"]["PATH"]) if config["HEARTBEAT"]["PATH"] else  Path(__file__).parent.parent.parent
+        self.isMainScript = isMainScript
+        if not self.isMainScript:
+            self.filePath = self.GetNewestFile()
+            logging.debug(f'[HEARTBEAT - rebooter] tracking file {self.filePath}')
+        else: 
+            self.filename = f'{config["HEARTBEAT"]["FILENAME"]}.{os.getpid()}.heartbeat'
+            self.filePath = Path.joinpath(self.absPath, self.filename)
+            logging.debug(f'[HEARTBEAT - Main] file will be stored af {self.absPath} with filename {self.filename}')
 
-
-    @staticmethod
-    def _RetrieveFileList() -> list:
-        hbPath = config["HEARTBEAT"]["PATH"]
-        if not hbPath:
-            hbPath = Path(__file__).parent.parent.parent  
-
-        return list(Path(hbPath).glob("ROAST.*.HEARTBEAT"))
-
-    def _RemoveFiles(self, files: list) -> bool:
-        """Removes files in a list.
-
-        Args:
-            files (list): The file needs to have the absolute path.
+    def GetFile(self) -> Union[None, Path]:
+        """Retrieves the absolute file path if it exists
 
         Returns:
-            bool: False if there were no files, true if there were and they got removed.
+            Union[None, Path]: Returns None if the file does not exist.
         """
-        if not files:
+        if not self.filePath.is_file():
+            return None
+        return self.filePath
+        
+    def MakeFile(self) -> bool:
+        """Generates the heartbeat file
+
+        Raises:
+            RuntimeError: If a script uses this class with isMainScript=False this will be raised when running.
+
+        Returns:
+            bool: Returns Fales if the file already exists, else True.
+        """
+        self._checkScript('MakeFile')
+        if self.GetFile():
             return False
-
-        for file in files:
-            os.remove(file)
-
+        
+        with open(self.filePath, "w+") as file:
+            file.write(datetime.now().strftime("%Y-%m-%dT%H:%M"))
         return True
 
-    @staticmethod
-    def _GenerateFilename(time: datetime) -> str:
-        return f'ROAST.{config["HEARTBEAT"]["FORMAT"]}.heartbeat'\
-        .replace("%y", time.strftime("%y")) \
-        .replace("%m", time.strftime("%m")) \
-        .replace("%d", time.strftime("%d")) \
-        .replace("%H", time.strftime("%H")) \
-        .replace("%M", time.strftime("%M")) \
-        .replace("%S", time.strftime("%S")) \
-        .replace("%P", str(os.getpid())) \
-        .replace("%U", os.getlogin())
+    def UpdateFile(self) -> None:
+        """Updates the file with the new timestamp
 
-    def _GenerateHBFile(self) -> str:
-        ct = datetime.now()
-        filename = self._GenerateFilename(ct)
-        f = open(filename, "x")
-        f.write(ct.strftime("%y-%m-%dT%H:%M"))
-        f.close()
-        return Path()
+        Raises:
+            FileNotFoundError: If the file does not exist this will be raised (can be used to kil the bot.)
+            RuntimeError: If a script uses this class with isMainScript=False this will be raised when running.
+        """
+        self._checkScript('UpdateFile')
+        if not self.GetFile():
+            raise FileNotFoundError('Make sure to run MakeFile before trying to update it.')
 
-    def GetActiveHBFile(self, generate: bool = True, cleanup: bool = False) -> Path:
-        files = self._RetrieveFileList()
+        with open(self.filePath, "w") as file:
+            file.truncate(self.filePath.stat().st_size)
+            file.write(datetime.now().strftime("%Y-%m-%dT%H:%M"))
 
-        print(files)
-        file = None
+    def CleanOldFiles(self) -> None:
+        """Removes old .heartbeat files that is not in use anymore.
 
-        if not files and generate:
-            print("Creating file")
-            self._GenerateHBFile()
+        Raises:
+            RuntimeError: If a script uses this class with isMainScript=False this will be raised when running.
+        """
+        self._checkScript('CleanOldFiles')
+        for file in list(self.absPath.glob(f'{config["HEARTBEAT"]["FILENAME"]}.*.heartbeat')):
+            if file == self.filePath:
+                continue
+            os.remove(file)
 
-        if len(files) > 1 and cleanup:
-            file = files.pop(0)
-            self._RemoveFiles(files)
-        return files[0] if files else file
+    def _checkScript(self, method: str) -> None:
+        """A small internal wrapper method to check if the class is instantiated using isMainScript=False, if this is the case it'll raise RuntimeError.
 
-    def CreateHeartbeat(self, generate: bool = True, cleanup: bool = True) -> None:
-        ct = datetime.now()
-        file = self.GetActiveHBFile(generate, False)
-        file.rename(self._GenerateFilename(datetime.now()))
-        with file.open("w") as f:
-            f.truncate(file.stat().st_size)
-            f.write(ct.strftime("%y-%m-%dT%H:%M"))
+        Args:
+            action (str): The method to raise the RuntimeError for.
+
+        Raises:
+            RuntimeError: Raises RuntimeError if isMainScript is false.
+        """
+        if not self.isMainScript:
+            raise RuntimeError(f'This action {method} is only allowed by the main script.')
+
+
+    def GetNewestFile(self) -> Union[Path, None]:
+        """Retrieves the newest file. This function is mainly used by the auto-reload script
+
+        Returns:
+            Union[Path, None]: If the file is found it'll return the Absolute path else None
+        """
+        f: Path = None
+        for file in list(self.absPath.glob(f'{config["HEARTBEAT"]["FILENAME"]}.*.heartbeat')):
+            if not f or file.stat().st_mtime > f.stat().st_mtime:
+                f = file
+        return f
+    
+    def GetUpdateTime(self) -> datetime:
+        """Retrieves the Timestamp inside the file.
+
+        Raises:
+            FileNotFoundError: If the file does not exist this will be raised (can be used to kil the bot.)
+
+        Returns:
+            datetime: A datetime object of the stored time.
+        """
+        if not self.GetFile():
+            raise FileNotFoundError()
+        
+        with open(self.filePath, "r") as file:
+            return datetime.strptime(file.readline(-1), "%Y-%m-%dT%H:%M")

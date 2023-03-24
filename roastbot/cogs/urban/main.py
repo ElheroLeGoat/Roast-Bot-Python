@@ -6,8 +6,9 @@ from . import api
 from ...utils import database, logging
 
 class Urban(commands.Cog):
+    
     def __init__(self, bot):
-        print("ROAST Cog Loaded")
+        logging.debug('Urban Cog lodaded successfully')
         self.bot = bot
         self.api = api.UrbanApi()
 
