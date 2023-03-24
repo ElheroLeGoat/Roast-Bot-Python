@@ -19,7 +19,7 @@ class Roast(commands.Cog):
 
     RoastSlashGroup = SlashCommandGroup("roasts", "Commands related to the Roasts.")
 
-    @RoastSlashGroup.command(name='roast', description="Roast someone!")
+    @commands.slash_command(name='roast', description="Roast someone!")
     @commands.has_permissions(send_messages=True)
     async def Roast(self, ctx: discord.ApplicationContext, 
                     user:     Option(discord.Member, "What user do you want to roast?", required=False),

@@ -11,9 +11,9 @@ class Urban(commands.Cog):
         self.bot = bot
         self.api = api.UrbanApi()
 
-    UrbanSlashGroup = SlashCommandGroup("urban", "Commands related to urban dictionary.")
+    UrbanSlashGroup = SlashCommandGroup("urbans", "Commands related to urban dictionary.")
 
-    @UrbanSlashGroup.command(name="search", description="Lookup something in the urban dictionary!")
+    @commands.slash_command(name="urban", description="Lookup something in the urban dictionary!")
     @commands.has_permissions(send_messages=True)
     async def Search(self, ctx: discord.ApplicationContext,
                     word: Option(str, "The word to lookup")):
