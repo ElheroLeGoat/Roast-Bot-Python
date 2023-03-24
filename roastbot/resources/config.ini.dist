@@ -1,37 +1,39 @@
 [DISCORD]
 # The bots discord token.
 TOKEN = 
+
+# The owner of the bot.
 OWNER = 
-# Adding the ID's of a guild and channel will allow developer commands to be run.
+
+# Comma Separated-string of the active Developers of Roast-Bot
+ACTIVE.DEVS = 202009333049851904, 390315922369282049
+
+# Adding the ID's of a guild and channel will allow developer commands to be run. (defaults to 0)
 DEV_GUILD   = 0
 DEV_CHANNEL = 0
 
 [LOGGING]
+# Don't edit the format just yet.
 ENABLED = true
-# The formats below are defined based on the 
-#
 LOG.FORMAT = [%%(asctime)s] %%(levelname)s: %%(message)s
 DATE.FORMAT = %%d-%%b-%%y %%H:%%M:%%S
 
-
 [SETUP]
+# The virtual environment name (defaults to venv)
 VENV.NAME = venv
 
 # The runtime will only be applied if the run.py file is executed.
 [RUNTIME]
+# Headless mode starts the bot as a background script allowing you to close the window. default is True.
 HEADLESS = true
 DEBUG = true
 
-# the heartbeat is recommended if you're running a headless version of the script.
 [HEARTBEAT]
-ENABLED = true
+# The path must be an absolute path eg: C:\Users\admin\Desktop
+# If the path is undefined it'll default to the root folder (where run.py and setup.py is located)
+PATH     =
+# The Filename is used to determine what the heartbeat file starts with (defaults to roast)
+FILENAME = roast
 
-# format of the heartbeat. note unallowed characters will be stripped allowed characters are: a-Z ._
-# The file will always end on .heartbeat
-FORMAT  = %%y.%%m.%%d_%%H.%%M_%%P
-
-# The path determines where to generate the heartbeat file.
-# by default it'll generate it in the project root.
-PATH    = 
-
+# Interval between updates in minutes (default is 5)
 INTERVAL = 5
