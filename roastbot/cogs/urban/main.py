@@ -4,6 +4,7 @@ from discord.ext import commands
 from discord.commands import SlashCommandGroup, Option
 from . import api
 from ...utils import database, logging
+from ...resources.globals import __CONFIG__ as config
 
 class Urban(commands.Cog):
     

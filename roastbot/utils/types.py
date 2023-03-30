@@ -28,8 +28,36 @@ def wrap(msg: str) -> str:
     return f'{wrp}\n{msg}\n{wrp}\n'
 
 class Singleton(type):
+    """Singleton Metaclass
+
+    This class will keep track of a given class and make sure there's only one instance at a time.
+    """
     _instances = {}
     def __call__(cls, *args, **kwargs):
         if cls not in cls._instances:
             cls._instances[cls] = super(Singleton, cls).__call__(*args, **kwargs)
         return cls._instances[cls]
+
+class obj(object):
+    """Callable object class
+
+    This class can help generate the object structure.
+    """
+    def __init__(self, _name: str):
+        self._name = _name
+
+    def set(self, _name: str, _value: any) -> None:
+        setattr(self, _name, _value)
+    
+    def get(self, _name: str) -> any:
+        return getattr(self, _name)
+
+    def __getattr__(self, _name: str) -> None:
+        """ Fallback to prevent AttributeError
+        Args:
+            _name (str): The attribute name
+
+        Returns:
+            None: Will always return none.
+        """
+        return None

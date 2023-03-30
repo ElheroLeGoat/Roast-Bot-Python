@@ -17,6 +17,8 @@ class Administration(commands.Cog):
         self.heartbeat = Heartbeat()
         self.heartbeat.MakeFile()
         self.heartbeat.CleanOldFiles()
+        self.HeartBeatTask.start()
+
         logging.debug('Administration Cog loaded successfully')
     AdminSlashGroup = SlashCommandGroup("adm", "Admin commands that can only be run by the selected few", guild_ids = [461362371139469328], guild_only = True)
 
