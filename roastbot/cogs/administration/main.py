@@ -6,9 +6,6 @@ from ...resources import globals
 from ...utils import logging
 from ...utils.heartbeat import Heartbeat
 
-config = globals.__CONFIG__
-ActiveDevelopers = config["DISCORD"]["ACTIVE.DEVS"].replace(" ", "").split(",")
-
 class Administration(commands.Cog):
     heartbeat: Heartbeat    
 
@@ -20,9 +17,9 @@ class Administration(commands.Cog):
         self.HeartBeatTask.start()
 
         logging.debug('Administration Cog loaded successfully')
-    AdminSlashGroup = SlashCommandGroup("adm", "Admin commands that can only be run by the selected few", guild_ids = [461362371139469328], guild_only = True)
+    AdminSlashGroup = SlashCommandGroup("adm", "Admin commands that can only be run by the selected few", guild_ids=[461362371139469328], guild_only=True)
 
-    @tasks.loop(minutes=int(config["HEARTBEAT"]["INTERVAL"]))
+    @tasks.loop(minutes=globals.config.HEARTBEAT.INTERVAL)
     async def HeartBeatTask(self):
         try:
             self.heartbeat.UpdateFile()
@@ -33,7 +30,7 @@ class Administration(commands.Cog):
 
     @AdminSlashGroup.command(name="getlog", description="Retrieves current logfile")
     async def Getlog(self, ctx: discord.ApplicationContext):
-        if not str(ctx.author.id) in ActiveDevelopers:
+        if not ctx.author.id in globals.config.DISCORD.ACTIVE.DEVS:
             return await ctx.respond("This command is restricted to the current active devs.", ephemeral=True)
 
         file = f'{globals.__ROOTPATH__.parent}{globals.__SEP__}roast_log.log'

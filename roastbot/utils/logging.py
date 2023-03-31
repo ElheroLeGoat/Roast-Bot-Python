@@ -14,7 +14,7 @@ def filter(record: log_lib.LogRecord):
     cog = path_list[-2] if path_list[-2] not in ['resources', 'controls', 'roastbot'] else 'main'
     file = path_list[-1].rstrip('.py')
     if file != 'main':
-        record.cog = f'{cog} - {file}'
+        record.cog = f'{cog.upper()} - {file}'
     else:
         record.cog = cog
     return record

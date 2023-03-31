@@ -55,16 +55,11 @@ class cfg(obj):
         """Internal method to loop all sections found in the parser.
         """
         for section_name in self.parser.sections():
-            print(f'***{section_name}')
             section_object = obj(section_name)
             for item in self.parser[section_name].items():
                 value = self._verify_type(item[1])
                 if "." in item[0]:
                     section_object.set(*self._get_sub_section(item[0].upper(), value, section_object))
-                else:
-                    section_object.set(item[0].upper(), value)
-                sub_section_split = item[0].split(".")
-                sub_section = section_object.get(sub_section_split[0])
                 section_object.set(item[0].upper(), value)
             self.set(section_name, section_object)
 

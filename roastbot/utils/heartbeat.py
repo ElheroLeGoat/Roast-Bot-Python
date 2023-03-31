@@ -39,7 +39,7 @@ class Heartbeat(metaclass=Singleton):
         else: 
             self.filename = f'{config["HEARTBEAT"]["FILENAME"]}.{os.getpid()}.heartbeat'
             self.filePath = Path.joinpath(self.absPath, self.filename)
-            logging.debug(f'[HEARTBEAT - Main] file will be stored af {self.absPath} with filename {self.filename}')
+            logging.debug(f'file will be stored at {self.absPath} with filename {self.filename}')
 
     def GetFile(self) -> Union[None, Path]:
         """Retrieves the absolute file path if it exists

@@ -2,6 +2,7 @@ import os
 import discord
 from .resources import globals
 from .utils import logging
+from .utils.types import ConvertBool
 
 
 config = globals.__CONFIG__
@@ -17,8 +18,8 @@ class RoastClient(discord.AutoShardedBot):
         await bot.change_presence(status=discord.Status.online)
     
     async def on_connect(self):
-        if bool(config["RUNTIME"]["DEBUG"]) and self.FirstConnection:
-            await self.register_commands()
+        if ConvertBool(config["RUNTIME"]["DEBUG"]) and self.FirstConnection:
+            await self.register_commands(force=True, delete_existing=True)
             self.FirstConnection = False
 
     @staticmethod
