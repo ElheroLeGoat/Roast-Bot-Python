@@ -1,10 +1,12 @@
-# Global Modules to import
+# System Imports
+import os
 from datetime import datetime
 from typing   import Union
 from pathlib  import Path
-import os
 
-# Package specific modules.
+# Discord Imports
+
+# Project Imports
 from ..resources.globals import __CONFIG__ as config
 from .types import Singleton
 from . import logging
@@ -62,10 +64,14 @@ class Heartbeat(metaclass=Singleton):
         """
         self._checkScript('MakeFile')
         if self.GetFile():
+            logging.debug('A request to make a Heartbeat file was made but the file already exists.')
             return False
         
+        time = datetime.now().strftime("%Y-%m-%dT%H:%M")
         with open(self.filePath, "w+") as file:
-            file.write(datetime.now().strftime("%Y-%m-%dT%H:%M"))
+            file.write(time)
+
+        logging.debug(f'A request to make a Heartbeat file was made the file is saved with the timestamp: {time}')
         return True
 
     def UpdateFile(self) -> None:
@@ -77,11 +83,14 @@ class Heartbeat(metaclass=Singleton):
         """
         self._checkScript('UpdateFile')
         if not self.GetFile():
+            logging.debug(f'A request to update the Heartbeat file was made, but the file does not exist.')
             raise FileNotFoundError('Make sure to run MakeFile before trying to update it.')
 
+        time = datetime.now().strftime("%Y-%m-%dT%H:%M")
         with open(self.filePath, "w") as file:
             file.truncate(self.filePath.stat().st_size)
-            file.write(datetime.now().strftime("%Y-%m-%dT%H:%M"))
+            file.write(time)
+        logging.debug(f'A request to update the Heartbeat file was made, new time set: {time}')
 
     def CleanOldFiles(self) -> None:
         """Removes old .heartbeat files that is not in use anymore.

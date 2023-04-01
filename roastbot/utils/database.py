@@ -1,8 +1,12 @@
+# System Imports 
 from typing import Union
-import aiosqlite 
+import aiosqlite
 
+# Discord Imports
 
+# Project Imports
 from ..resources import globals
+from ..utils import logging
 
 database_path = f'{globals.__PATHS__["RESOURCES"]}{globals.__SEP__}{"storage.db"}'
 
@@ -37,7 +41,9 @@ async def getGuild(id: int) -> Union[Guild, None]:
     async with aiosqlite.connect(database_path) as con:
         con.row_factory = lambda cursor, row: Guild(id=row[0], censor=row[1].split(","), urban=bool(row[2]), meme=bool(row[3]))
         cur = await con.execute("SELECT * FROM guilds WHERE id = ?", (id,))
-        return await cur.fetchone()
+        fetch = await cur.fetchone()
+        logging.debug(f'Fetched following values from the database: {fetch}')
+        return fetch
     
 
 async def createGuild(id: int, acg: list = [], urban: bool = True, meme: bool = True) -> bool:
@@ -66,8 +72,9 @@ async def createGuild(id: int, acg: list = [], urban: bool = True, meme: bool = 
             else:
                 cur = await con.execute("UPDATE guilds SET censor=:censor, urban=:urban, meme=:meme WHERE id = :id", values)
             await con.commit()
-
+        logging.debug(f'Successfully created a guild in the database with following values: {values}')
         return bool(cur.rowcount)
     except Exception as e:
         # Log error
+        logging.debug(f'Unable to create a guild with values: {values} the error that occured was: {e}')
         return False

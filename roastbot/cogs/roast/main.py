@@ -1,4 +1,4 @@
-# Standard Library Imports
+# System Imports
 
 # Discord Imports
 import discord
@@ -11,7 +11,6 @@ from ...utils import database, logging
 from . import logic
 
 class Roast(commands.Cog):
-    
     def __init__(self, bot):
         logging.debug('Roast cog loaded successfully')
         self.bot = bot
@@ -36,6 +35,7 @@ class Roast(commands.Cog):
         if guild:
             acg = guild.censor
         roast = self.roasts.GetRoast(acg, roast_id)
+        logging.CommandLogger(ctx, 'roast', roast)
         if roast["success"]:
             if user.id == self.bot.user.id:
                 user = ctx.author
@@ -59,8 +59,8 @@ class Roast(commands.Cog):
         agc = []
         if guild:
             agc = guild.censor
-        
         roast = self.roasts.SearchRoast(search, agc)
+        logging.CommandLogger(ctx, '/roasts search', roast)
         await ctx.respond(roast["message"])
 
     async def _get_censor_list(self, ctx: discord.AutocompleteContext) -> list:

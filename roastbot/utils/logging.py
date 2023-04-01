@@ -2,9 +2,12 @@
 import os
 import logging as log_lib
 
+# Discord imports
+import discord
+
 # Project imports
 from ..resources.globals import __CONFIG__ as config
-from .types import ConvertBool
+
 
 log_lib.getLogger("main")
 log_lib.basicConfig(filename="roast_unordered_log.log", level=log_lib.ERROR, datefmt=config["LOGGING"]["DATE.FORMAT"])
@@ -13,17 +16,21 @@ def filter(record: log_lib.LogRecord):
     path_list = record.pathname.split(os.path.sep)
     cog = path_list[-2] if path_list[-2] not in ['resources', 'controls', 'roastbot'] else 'main'
     file = path_list[-1].rstrip('.py')
-    if file != 'main':
+    if file == "logging":
+        record.cog = f'Command Logger'
+    elif file not in ["main", "__main__"]:
         record.cog = f'{cog.upper()} - {file}'
     else:
         record.cog = cog
     return record
 
+def CommandLogger(ctx: discord.ApplicationContext, command: str, response: str):
+        debug(f'{ctx.author.display_name}#{ctx.author.discriminator} ran command {command} and recieved {response}')
 
 ErrorLog = log_lib.getLogger('roast_errors')
 InfoLog = log_lib.getLogger('roast_info')
 
-if ConvertBool(config["RUNTIME"]["DEBUG"]):
+if str(config["RUNTIME"]["DEBUG"]).strip().lower() in ["1", "true", "yes", "ok"]:
     ErrorLog.setLevel(log_lib.DEBUG)
 else:
     ErrorLog.setLevel(log_lib.WARNING)

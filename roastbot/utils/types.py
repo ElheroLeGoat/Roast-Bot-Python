@@ -1,4 +1,9 @@
+# System Imports
 from typing import Union
+
+# Discord Imports
+
+# Project Imports
 
 def ConvertBool(var: Union[int, str]) -> bool:
     """converts a string or integer into a boolean.
@@ -14,18 +19,30 @@ def ConvertBool(var: Union[int, str]) -> bool:
         return True
     return False
 
-def wrap(msg: str) -> str:
-    """Wraps a message in the # character
+def wrap(*messages: str) -> str:
+    """Wraps one or more messages
 
     Args:
-        msg (str): The message to wrap
+        messages (str): The messages to wrap
 
     Returns:
         str: Returns the wrapped message.
     """
-    msg = f'# {msg} #'
-    wrp = "#".replace("#", '#'*len(msg), 1)
-    return f'{wrp}\n{msg}\n{wrp}\n'
+    maxlen = 0
+    msg = ""
+    for message in messages:
+        if len(message) > maxlen:
+            maxlen = len(message)
+
+    for message in messages:
+        if maxlen > len(message):
+            # Need to add some spacers so it match
+            msg += f'# {message}{" "*(maxlen - len(message))} #\n'
+            continue
+        msg += f'# {message} #\n'
+
+    wrp = "#"*(maxlen+4)
+    return f'{wrp}\n{msg}{wrp}\n'
 
 class Singleton(type):
     """Singleton Metaclass

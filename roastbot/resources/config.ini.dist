@@ -1,22 +1,21 @@
 [DISCORD]
 # The bots discord token.
-TOKEN = 
+TOKEN =
 
 # The owner of the bot.
 OWNER = 
 
 # Comma Separated-string of the active Developers of Roast-Bot
-ACTIVE.DEVS = 202009333049851904, 390315922369282049
+ACTIVE.DEVS = $[202009333049851904, 390315922369282049]
 
 # Adding the ID's of a guild and channel will allow developer commands to be run. (defaults to 0)
 DEV_GUILD   = 0
 DEV_CHANNEL = 0
 
 [LOGGING]
-# Don't edit the format just yet.
 ENABLED = true
-LOG.FORMAT = [%%(asctime)s] %%(levelname)s: %%(message)s
-DATE.FORMAT = %%d-%%b-%%y %%H:%%M:%%S
+LOG.FORMAT = [%%(asctime)s] %%(levelname)s [%%(cog)s]: %%(message)s
+DATE.FORMAT = %%d-%%b-%%y %%H:%%M:%%s
 
 [SETUP]
 # The virtual environment name (defaults to venv)

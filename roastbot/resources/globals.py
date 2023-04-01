@@ -1,8 +1,14 @@
+# System Imports
 import configparser
 import os
 from typing import Union
 from pathlib import Path
+
+# Discord Imports
+
+# Project Imports
 from ..utils.types import obj
+
 # Path Globals
 # We probably doesn't need em but hey, now we have em.
 __ROOTPATH__ = Path(__file__).parent.parent
@@ -13,8 +19,9 @@ __PATHS__ = {
     "UTILS": Path.joinpath(__ROOTPATH__, "utils")
 }
 __SEP__ = os.path.sep
+__VERSION__ = "0.5.0-PA"
 
-# Configuration class is used to beautify the config.ini.
+# ANYTHING BELOW IS CONFIG BASED
 class cfg(obj):
     """Welcome to the Hell of fixing configuration in Python.
     This class uses a custom object class "obj" as it's parent that just guarantees that if an key does not exist, it'll simply return None.
@@ -86,7 +93,7 @@ class cfg(obj):
             section.set(*self._get_sub_section(split_name[1], value, section))
         return (split_name[0], section)
 
-    def _verify_type(self, item: str) -> Union[int, str, float, list]:
+    def _verify_type(self, item: str) -> Union[None, bool, int, str, float, list]:
         """Takes an item (str) and translates it into 4 different types:
             1) None - If empty
             2) INT
@@ -102,6 +109,10 @@ class cfg(obj):
         try:
             if not item:
                 return None
+            elif item.lower() in ["yes", "yep", "true", "$1", "active"]:
+                return True
+            elif item.lower() in ["no", "nope", "false", "$0", "inactive"]:
+                return False
             elif item.isnumeric():
                 # The item is an integer, we'll just return it as an int.
                 return int(item)

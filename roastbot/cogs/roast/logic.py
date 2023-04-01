@@ -1,6 +1,12 @@
+# System Imports
 import random
 import json
+
+# Discord Imports
+
+# Project Imports
 from ...resources import globals
+from ...utils import logging
 
 # class Roast(commands.Cog):
 class RoastLogic():
@@ -41,7 +47,7 @@ class RoastLogic():
             data = json.loads(obj.read())
 
             # Setup of Censor groups
-            self.censor_groups = list(data["censor_groups"])
+            self.censor_groups = ["No Censor"] + list(data["censor_groups"])
             i = 0
             while i < len(self.censor_groups):
                 self.roasts[i] = {}
@@ -59,8 +65,10 @@ class RoastLogic():
                     self.roasts[roast["censor"]][i] = roast["roast"]
                 except IndexError:
                     # Roast should not be saved since the censor doesn't exist.
+                    logging.debug(f'Censor group: ({roast["censor"]}) does not exist so roast: ({roast["roast"]}) has not been saved.' )
                     pass
             self.total_roasts = i - 1
+        logging.debug(f'A total number of: {self.total_roasts} was split between {self.censor_groups}')
 
     def SearchRoast(self, search_param: str, acg: list = []) -> dict:
         """Searches the roast list in the allowed groups.
@@ -72,6 +80,7 @@ class RoastLogic():
         Returns:
             dict[succes, message]: Returns the possible success.
         """
+        # LOGGING IS DONE IN COMMAND METHOD
         lookup_table = self._getLookupTable(acg)
 
         # Fucking magical searching
@@ -99,6 +108,7 @@ class RoastLogic():
         Returns:
             dict[succes, message]: Returns the possible success.
         """
+        # LOGGING IS DONE IN COMMAND METHOD
         retval = {"success": True}
         lookup_table = self._getLookupTable(agc)
 
