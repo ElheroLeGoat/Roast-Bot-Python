@@ -37,7 +37,7 @@ class Roast(commands.Cog):
         roast = self.roasts.GetRoast(acg, roast_id)
         logging.CommandLogger(ctx, 'roast', roast)
         if roast["success"]:
-            if user.id == self.bot.user.id:
+            if not user or user.id == self.bot.user.id:
                 user = ctx.author
             await ctx.respond(f'{user.mention}, {roast["message"]}')
         else:
