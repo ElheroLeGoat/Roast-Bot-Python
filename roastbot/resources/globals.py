@@ -18,6 +18,14 @@ __PATHS__ = {
     "COGS": Path.joinpath(__ROOTPATH__, "cogs"),
     "UTILS": Path.joinpath(__ROOTPATH__, "utils")
 }
+
+paths = obj("paths")
+paths.set("ROOT", __ROOTPATH__)
+paths.set("RESOURCES", Path.joinpath(__ROOTPATH__, "resources"))
+paths.set("COGS", Path.joinpath(__ROOTPATH__, "cogs"))
+paths.set("UTILS", Path.joinpath(__ROOTPATH__, "utils"))
+
+
 __SEP__ = os.path.sep
 __VERSION__ = "0.5.0-PA"
 

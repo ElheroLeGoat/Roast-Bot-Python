@@ -15,14 +15,12 @@ class RoastClient(discord.AutoShardedBot):
     async def on_ready(self):
         if self.ready:
             return
-        
-        guild_length = len(await bot.fetch_guilds().flatten())
 
         logging.info(wrap(f'ROAST BOT IS LIVE',
                           f'Version___: {globals.__VERSION__}',
                           f'Username__: {bot.user.name}',
                           f'Shards____: {bot.shard_count}',
-                          f'Servers___: {guild_length}',
+                          f'Servers___: {len(bot.guilds)}',
                           f'Process id: {os.getpid()}', 
                           f'Debug Mode: {"Yes" if globals.config.RUNTIME.DEBUG else "No"}'
                         )

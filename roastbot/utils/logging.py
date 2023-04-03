@@ -25,7 +25,7 @@ def filter(record: log_lib.LogRecord):
     return record
 
 def CommandLogger(ctx: discord.ApplicationContext, command: str, response: str):
-        debug(f'{ctx.author.display_name}#{ctx.author.discriminator} ran command {command} and recieved {response}')
+        debug(f'[SHARD {ctx.guild.shard_id}] "{ctx.author.name}#{ctx.author.discriminator}" ran command "/{command}" in "{ctx.guild.name}" and recieved {response}')
 
 ErrorLog = log_lib.getLogger('roast_errors')
 InfoLog = log_lib.getLogger('roast_info')
