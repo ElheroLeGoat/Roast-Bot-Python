@@ -1,5 +1,6 @@
 # System Imports
 import datetime
+from pathlib import Path
 
 # Discord Imports
 import discord
@@ -42,7 +43,9 @@ class Administration(commands.Cog):
             return await ctx.respond("This command is restricted to the current active devs.", ephemeral=True)
 
         logging.CommandLogger(ctx, "getlog", "The logfile")
-        file = f'{globals.__ROOTPATH__.parent}{globals.__SEP__}roast_log.log'
+        file = Path.joinpath(globals.paths.RESOURCES, 'logs', 'roast_log.log')
+        if not file.is_file():
+            return await ctx.respond(f'uh oh - the log: {file} does not exist!', ephemeral=True)
         await ctx.respond(file=discord.File(file), ephemeral=True)
 
     @utilitySlashGroup.command(name='status', description='Shows information about the bot.')
