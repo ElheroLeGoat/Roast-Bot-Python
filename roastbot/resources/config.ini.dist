@@ -1,20 +1,38 @@
 [DISCORD]
 # The bots discord token.
+# Defaults to: None
 TOKEN =
 
 # The owner of the bot.
-OWNER = 
+# Defaults to: None 
+OWNER =
 
 # Comma Separated-string of the active Developers of Roast-Bot
+# DEfaults to: $[202009333049851904, 390315922369282049]
 ACTIVE.DEVS = $[202009333049851904, 390315922369282049]
 
-# Adding the ID's of a guild and channel will allow developer commands to be run. (defaults to 0)
-DEV_GUILD   = 0
-DEV_CHANNEL = 0
+# @TODO: implement DEV.
+# Adding the ID's of a guild and channel will allow developer commands to be run
+# Defaults to: 0
+DEV.GUILD = 0
+DEV.GUILD = 0
+
 
 [LOGGING]
-ENABLED = true
+# Decides wether or not DEBUG mode should be on (Defaults to False)
+# Defaults to: false
+DEBUG = false
+
+# Determines the absolute path to the log files (None = roastbot/resources/logs)
+# Defaults to: None
+PATH =
+
+# The Log format based on: https://docs.python.org/3/library/logging.html (cog) is added after.
+# Defaults to: [%%(asctime)s] %%(levelname)s [%%(cog)s]: %%(message)s
 LOG.FORMAT = [%%(asctime)s] %%(levelname)s [%%(cog)s]: %%(message)s
+
+# The date format based on the LogLib dateformat.
+# Defaults to: %%d-%%b-%%y %%H:%%M:%%s
 DATE.FORMAT = %%d-%%b-%%y %%H:%%M:%%s
 
 [SETUP]
@@ -24,15 +42,19 @@ VENV.NAME = venv
 # The runtime will only be applied if the run.py file is executed.
 [RUNTIME]
 # Headless mode starts the bot as a background script allowing you to close the window. default is True.
-HEADLESS = true
-DEBUG = true
+# Defaults to: false
+HEADLESS = false
 
 [HEARTBEAT]
 # The path must be an absolute path eg: C:\Users\admin\Desktop
 # If the path is undefined it'll default to the root folder (where run.py and setup.py is located)
-PATH     =
-# The Filename is used to determine what the heartbeat file starts with (defaults to roast)
+# Defaults to: None
+PATH =
+
+# The Filename is used to determine what the heartbeat file starts with
+# Defaults to: roast
 FILENAME = roast
 
 # Interval between updates in minutes (default is 5)
+# Defaults to: 5
 INTERVAL = 5

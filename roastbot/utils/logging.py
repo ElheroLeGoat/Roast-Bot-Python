@@ -1,16 +1,22 @@
 # System imports
 import os
 import logging as log_lib
-
+from pathlib import Path
 # Discord imports
 import discord
 
 # Project imports
 from ..resources.globals import __CONFIG__ as config
+from ..resources.globals import config
+from ..resources.globals import paths
 
+path = Path.joinpath(paths.RESOURCES, 'logs')
+if config.LOGGING.PATH:
+    path = Path(config.LOGGING.PATH)  
+path.mkdir(exist_ok=True, parents=True)
 
 log_lib.getLogger("main")
-log_lib.basicConfig(filename="roast_unordered_log.log", level=log_lib.ERROR, datefmt=config["LOGGING"]["DATE.FORMAT"])
+log_lib.basicConfig(filename=Path.joinpath(path, 'unordered_log.log'), level=log_lib.ERROR, datefmt=config.LOGGING.DATE.FORMAT)
 
 def filter(record: log_lib.LogRecord):
     path_list = record.pathname.split(os.path.sep)
@@ -30,17 +36,16 @@ def CommandLogger(ctx: discord.ApplicationContext, command: str, response: str):
 ErrorLog = log_lib.getLogger('roast_errors')
 InfoLog = log_lib.getLogger('roast_info')
 
-if str(config["RUNTIME"]["DEBUG"]).strip().lower() in ["1", "true", "yes", "ok"]:
+if config.LOGGING.DEBUG:
     ErrorLog.setLevel(log_lib.DEBUG)
 else:
     ErrorLog.setLevel(log_lib.WARNING)
 InfoLog.setLevel(log_lib.INFO)
 
-ErrorFileHandler = log_lib.FileHandler('roast_log.log')
-InfoFileHandler = log_lib.FileHandler('roast_log.log')
+ErrorFileHandler = log_lib.FileHandler(Path.joinpath(path, 'roast_log.log'))
+InfoFileHandler = log_lib.FileHandler(Path.joinpath(path, 'roast_log.log'))
 ErrorFileHandler.addFilter(filter)
-
-ErrorFileHandler.setFormatter(log_lib.Formatter(config["LOGGING"]["LOG.FORMAT"]))
+ErrorFileHandler.setFormatter(log_lib.Formatter(config.LOGGING.LOG.FORMAT))
 InfoFileHandler.setFormatter(log_lib.Formatter('%(message)s'))
 
 ErrorLog.addHandler(ErrorFileHandler)

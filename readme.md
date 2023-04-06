@@ -9,16 +9,24 @@
 </p>
 
 # Roast Bot - The Python rewrite
-**125** Roasts, More than *300* memes, Roast-Bot has everything you need to give your friends a warm welcome!
+**125** Roasts, More than **300** memes, Roast-Bot has everything you need to give your friends a warm welcome!
 
 ## Requirements:
 - [Python 3.11 or newer](https://www.python.org/downloads/)
+- [The zipped meme file](https://github.com/ElheroLeGoat/Roast-Bot-Python/blob/master/roastbot/resources/images/memes.zip)
+   > You can download the zipped file directly and place it in roastbot/resources/images > The setup script will handle the rest.
+   > memes.zip is saved with git LFS and simply downloading the sourcecode as ZIP results in corruption of the file.
 
 ## Setup:
 1. Download Latest Release
 2. execute `setup.py`
-   > This will rename `config.ini.dist` > `config.ini`, create the `virtual environment`, install all `dependencies` and generate the `sqlite database`
+   > Renames `config.ini.dist` > `config.ini`
+   > Generates a virtual environment for the bot to run in.
+   > Installs all dependencies.
+   > Generates the database required for the bot to function.
+   > Unzips memes.zip.
 3. Edit `config.ini` so all required information is added.
+   * DISCORD.TOKEN
 
 ## Running the bot
 Use `run.py` it's designed to 
@@ -29,8 +37,4 @@ Use `run.py` it's designed to
 > **A)** make sure the `RUNTIME.HEADLESS` is set to `yes` in your `config.ini` and start the bot by executing `run.py`
 
 ### Q) Why does the bot die unexpectedly
-> **A)** If you haven't changed the logging setting in the `config.ini` file you can find all logs under `src/resources/logs`
-
-### Q) Is there a way to see if the bot is online?
-> **A)** running `/roast_status` will show you the status of your active bot instance.
-> If this does not work, the bot will generate a heartbeat file in the root, here you should be able to see when it last responded.
+> **A)** If you haven't changed the logging setting in the `config.ini` file you can find all logs under `roastbot/resources/logs`
