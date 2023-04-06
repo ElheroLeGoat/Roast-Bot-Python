@@ -31,6 +31,8 @@ class Urban(commands.Cog):
         await ctx.defer()
         guild = await database.getGuild(ctx.guild.id)
         if guild and not guild.urban:
+            if ctx.author.guild_permissions.ban_members:
+                return await ctx.respond(f'`{ctx.guild.name}` has disabled the Urban dictionary, you can enable it by using `/urbans censor False`', ephemeral=True)
             return await ctx.respond(f'Sorry, but `{ctx.guild.name}` has disabled the Urban dictionary', ephemeral=True)
         lookup = await self.api.LookupByWord(word.strip())
         if lookup:
