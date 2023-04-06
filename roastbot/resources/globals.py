@@ -26,7 +26,7 @@ paths.set("UTILS", Path.joinpath(__ROOTPATH__, "utils"))
 
 
 __SEP__ = os.path.sep
-__VERSION__ = "1.0.0"
+__VERSION__ = "1.0.1"
 __START_TIME__ = datetime.datetime.now()
 # ANYTHING BELOW IS CONFIG BASED
 class cfg(obj):

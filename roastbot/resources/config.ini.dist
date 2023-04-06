@@ -15,7 +15,7 @@ ACTIVE.DEVS = $[202009333049851904, 390315922369282049]
 # Adding the ID's of a guild and channel will allow developer commands to be run
 # Defaults to: 0
 DEV.GUILD = 0
-DEV.GUILD = 0
+DEV.CHANNEL = 0
 
 
 [LOGGING]
