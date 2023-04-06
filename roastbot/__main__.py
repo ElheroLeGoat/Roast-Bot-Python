@@ -1,6 +1,5 @@
 # System Imports
 import os
-import datetime
 
 # Discord Imports
 import discord
@@ -23,14 +22,14 @@ class RoastClient(discord.AutoShardedBot):
                           f'Shards____: {bot.shard_count}',
                           f'Servers___: {len(bot.guilds)}',
                           f'Process id: {os.getpid()}', 
-                          f'Debug Mode: {"Yes" if globals.config.RUNTIME.DEBUG else "No"}'
+                          f'Debug Mode: {"Yes" if globals.config.LOGGING.DEBUG else "No"}'
                         )
                     )
         self.ready = True
         await bot.change_presence(status=discord.Status.online)
     
     async def on_connect(self):
-        if globals.config.RUNTIME.DEBUG and self.FirstConnection:
+        if globals.config.LOGGING.DEBUG and self.FirstConnection:
             logging.debug(f'Debug is enabled and command registration will begin')
             commands = await self.register_commands(force=True, delete_existing=True)
             self.FirstConnection = False

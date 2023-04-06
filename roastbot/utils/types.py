@@ -44,6 +44,43 @@ def wrap(*messages: str) -> str:
     wrp = "#"*(maxlen+4)
     return f'{wrp}\n{msg}{wrp}\n'
 
+def deltaFormatter(td):                             # defining the function
+    td_sec = td.seconds                                  # getting the seconds field of the timedelta
+    hour_count, rem = divmod(td_sec, 3600)               # calculating the total hours
+    minute_count, second_count = divmod(rem, 60)
+    msg = ''
+    # Days
+    if td.days > 0:
+        msg += f'{td.days} Day'
+        if td.days > 1:
+            msg += 's'
+
+    # Hours
+    if hour_count > 0:
+        msg += f' {hour_count} Hour'
+        if hour_count > 1:
+            msg += 's'
+    
+    # Minutes
+    if minute_count > 0:
+        msg += f' {minute_count} Minute'
+        if minute_count > 1:
+            msg += 's'
+
+    # Seconds
+    if second_count > 0:
+        msg += f' {second_count} Second'
+        if second_count > 1:
+            msg += 's'
+
+    # Example prints:
+    # 1 Day 5 Hours 2 Minutes
+    # 2 Hours 1 Minute 5 Seconds
+    return msg.strip()
+
+
+
+
 class Singleton(type):
     """Singleton Metaclass
 

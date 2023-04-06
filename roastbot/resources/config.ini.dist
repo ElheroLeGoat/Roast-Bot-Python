@@ -58,3 +58,8 @@ FILENAME = roast
 # Interval between updates in minutes (default is 5)
 # Defaults to: 5
 INTERVAL = 5
+
+[COMMANDS]
+# Setting locks the /status command for active devs. only.
+# Defaults to: false
+LOCK.STATUS.COMMAND = false

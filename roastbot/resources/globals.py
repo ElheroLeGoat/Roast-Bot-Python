@@ -1,6 +1,5 @@
 # System Imports
-import configparser
-import os
+import os, datetime, configparser
 from typing import Union
 from pathlib import Path
 
@@ -28,7 +27,7 @@ paths.set("UTILS", Path.joinpath(__ROOTPATH__, "utils"))
 
 __SEP__ = os.path.sep
 __VERSION__ = "0.5.0-PA"
-
+__START_TIME__ = datetime.datetime.now()
 # ANYTHING BELOW IS CONFIG BASED
 class cfg(obj):
     """Welcome to the Hell of fixing configuration in Python.
