@@ -78,7 +78,7 @@ class Urban(commands.Cog):
         else:
             # Log error.
             logging.error(f'"{ctx.author.name}#{ctx.author.discriminator}" Tried to use "{ctx.command.qualified_name}" in "{ctx.guild.name}" but it failed with error {error}')
-            pass
+            await ctx.delete()
 
 def setup(bot):
     """

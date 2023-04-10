@@ -15,7 +15,7 @@ class UrbanApi:
 
     async def LookupByWord(self, search: str):
         data = await self.aiohttpWrapper(f'{self.uri}define?term={search}')
-        if data:
+        if data and data['list']:
             content = data['list'][0]
             return {"permalink":content["permalink"],
                     "definition": content['definition'],
