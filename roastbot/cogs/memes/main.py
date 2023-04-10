@@ -46,6 +46,9 @@ class Memes(commands.Cog):
         file = Path.joinpath(meme_path, f'meme{id}.png')
         if not file:
             file = Path.joinpath(meme_path, f'meme{id}.jpg')
+        if not file:
+            return await ctx.respond(f'Fat fuck the meme with id {id} doesn\'t exist', ephemeral=True)
+
         await ctx.respond(file=discord.File(file))
 
     @MemesSlashGroup.command(name="censor", description="Enable / disable Memes for the current guild.")
