@@ -65,7 +65,7 @@ class Memes(commands.Cog):
         if guild:
             await database.createGuild(guild.id, guild.censor, guild.urban, enable)
         else:
-            await database.createGuild(ctx.guild.id, memes=enable)
+            await database.createGuild(ctx.guild.id, meme=enable)
         await ctx.respond("Settings for the Urban Dictionary has been updated", ephemeral=True)
 
 def setup(bot):
